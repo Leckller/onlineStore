@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from '../types';
 import { fetchCategories } from '../redux/actions/FetchActions';
+import Categorias from '../components/Categorias';
 
 function Home() {
   const dispatch:Dispatch = useDispatch();
@@ -10,7 +11,10 @@ function Home() {
     dispatch(fetchCategories());
   }, []);
   return (
-    <div />
+    <div>
+      <header>blablabla</header>
+      <Categorias />
+    </div>
   );
 }
 

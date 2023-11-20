@@ -30,7 +30,10 @@ export type ProductAttributesType = {
 };
 
 export type GlobalState = {
-  UsersReducer: [],
+  StoreFetchReducer: {
+    loading: boolean,
+    categorias: CategoriesType[],
+  },
 };
 
 export type Dispatch = ThunkDispatch<GlobalState, null, AnyAction>;
