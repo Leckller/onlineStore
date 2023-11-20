@@ -2,7 +2,7 @@ import { CategoriesType } from '../types';
 
 const UrlBase = import.meta.env.VITE_URL_TOKEN; // .../
 const destinos = {
-  category: 'sites/MLA/categories',
+  category: 'sites/MLB/categories',
 };
 
 export const categorias = async ():Promise<CategoriesType[]> => {

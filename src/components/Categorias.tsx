@@ -2,7 +2,7 @@
 import { useSelector } from 'react-redux';
 import { GlobalState } from '../types';
 
-function Categorias() {
+function Categorias({ check }: { check: boolean }) {
   const { categorias, loading } = useSelector(
     (state: GlobalState) => state.StoreFetchReducer,
   );
@@ -16,6 +16,7 @@ function Categorias() {
         >
           <h2>{name}</h2>
           <input
+            checked={ check ? false : undefined }
             type="radio"
             id={ `categoria:${name}` }
             name="categoria"
