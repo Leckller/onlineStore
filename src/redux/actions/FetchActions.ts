@@ -1,5 +1,5 @@
-import { categorias } from '../../services/Fetch';
-import { CategoriesType, Dispatch } from '../../types';
+import { categorias, searchItens } from '../../services/Fetch';
+import { CategoriesType, Dispatch, ProductDetailsType } from '../../types';
 
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 
@@ -9,9 +9,9 @@ export const errorFetch = (error: any) => ({
   payload: error,
 });
 
-export const SUCESS_FETCH = 'SUCESS_FETCH';
-export const sucessFetch = (data:CategoriesType[]) => ({
-  type: SUCESS_FETCH,
+export const SUCESS_FETCH_CAT = 'SUCESS_FETCH_CAT';
+export const sucessFetchCat = (data:CategoriesType[]) => ({
+  type: SUCESS_FETCH_CAT,
   payload: data,
 });
 
@@ -25,7 +25,25 @@ export const fetchCategories = () => {
     disp(iniFetch());
     try {
       const data = await categorias();
-      disp(sucessFetch(data));
+      disp(sucessFetchCat(data));
+    } catch (err: any) {
+      disp(errorFetch(err));
+    }
+  };
+};
+
+export const SUCESS_FETCH_SEARCH = 'SUCESS_FETCH_SEARCH';
+export const sucessFetchSearch = (data: ProductDetailsType[]) => ({
+  type: SUCESS_FETCH_SEARCH,
+  payload: data,
+});
+
+export const fetchSearch = (endereco: string) => {
+  return async (disp:Dispatch) => {
+    disp(iniFetch());
+    try {
+      const data = await searchItens(endereco);
+      disp(sucessFetchSearch(data));
     } catch (err: any) {
       disp(errorFetch(err));
     }

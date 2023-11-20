@@ -19,7 +19,7 @@ export type ProductDetailsType = {
   title: string;
   thumbnail:string;
   price: number;
-  quantity: number;
+  available_quantity: number;
   attributes: [];
 };
 
@@ -31,7 +31,8 @@ export type ProductAttributesType = {
 
 export type GlobalState = {
   StoreFetchReducer: {
-    loading: boolean,
+    loadingCat: boolean,
+    loadingSearch: boolean,
     categorias: CategoriesType[],
   },
 };

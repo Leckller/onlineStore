@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from '../types';
-import { fetchCategories } from '../redux/actions/FetchActions';
+import { fetchCategories, fetchSearch } from '../redux/actions/FetchActions';
 import Categorias from '../components/Categorias';
+import { HomeDiv } from '../Styles';
 
 function Home() {
   const dispatch:Dispatch = useDispatch();
@@ -13,21 +14,27 @@ function Home() {
     dispatch(fetchCategories());
   }, []);
   return (
-    <div onFocus={ () => setCheck(false) }>
+    <HomeDiv onFocus={ () => setCheck(false) }>
       <header>
-        <input
-          type="text"
-          value={ search }
-          placeholder="Pesquisar"
-          onChange={ ({ target: { value } }) => setSearch(value) }
-          onClick={ () => setCheck(true) }
-        />
+        <form
+          onSubmit={ (e) => {
+            e.preventDefault(); dispatch(fetchSearch(search));
+          } }
+        >
+          <input
+            type="text"
+            value={ search }
+            placeholder="Pesquisar"
+            onChange={ ({ target: { value } }) => setSearch(value) }
+            onClick={ () => setCheck(true) }
+          />
+        </form>
       </header>
-      <Categorias check={ check } />
       <main>
-        itens
+        <Categorias check={ check } />
+        {check ? 'search' : 'categorias'}
       </main>
-    </div>
+    </HomeDiv>
   );
 }
 

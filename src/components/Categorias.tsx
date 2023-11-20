@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useSelector } from 'react-redux';
-import { GlobalState } from '../types';
+import { useDispatch, useSelector } from 'react-redux';
+import { Dispatch, GlobalState } from '../types';
 
 function Categorias({ check }: { check: boolean }) {
-  const { categorias, loading } = useSelector(
+  const dispatch:Dispatch = useDispatch();
+  const { categorias, loadingCat } = useSelector(
     (state: GlobalState) => state.StoreFetchReducer,
   );
-  if (loading) return <h1>Loading</h1>;
+  if (loadingCat) return <h1>Loading</h1>;
   return (
     <section>
       {categorias && categorias.map(({ id, name }) => (
