@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
@@ -6,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Dispatch, GlobalState } from '../types';
 import { fetchCategories, fetchSearch } from '../redux/actions/FetchActions';
 import Categorias from '../components/Categorias';
-import { HomeDiv } from '../Styles';
+import { HomeDiv, HomeHeader } from '../Styles';
 import Produtos from '../components/Produtos';
 import CategoriesSearch from '../components/CategoriesSearch';
 
@@ -33,7 +34,7 @@ function Home() {
   }, [searchString, formOk]);
   return (
     <HomeDiv>
-      <header>
+      <HomeHeader>
         <div />
         <form
           onSubmit={ (e) => {
@@ -53,10 +54,10 @@ function Home() {
           <button
             onClick={ () => navigate('/carrinho') }
           >
-            Carrinho
+            <i className="bi bi-basket3" />
           </button>
         </div>
-      </header>
+      </HomeHeader>
       <main>
         <Categorias set={ setCategorieCheck } check={ check } setCheck={ setCheck } />
         <section>

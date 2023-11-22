@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { CategoriesType, Dispatch } from '../types';
 import { fetchSelecCategorie } from '../redux/actions/FetchActions';
+import { ArticleCatSearch } from '../Styles';
 
 function CategoriesSearch({ categorie: { id, name },
   set }: { categorie: CategoriesType, set: (p: boolean) => void }) {
@@ -10,9 +11,9 @@ function CategoriesSearch({ categorie: { id, name },
     dispatch(fetchSelecCategorie(id));
   };
   return (
-    <article>
+    <ArticleCatSearch>
       <button onClick={ handleOnClick }><h2>{name}</h2></button>
-    </article>
+    </ArticleCatSearch>
   );
 }
 

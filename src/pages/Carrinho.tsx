@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { GlobalState, ProductDetailsType } from '../types';
@@ -10,7 +11,7 @@ function Carrinho() {
     <>
       <header>
         <button onClick={ () => navigate('/') }>
-          Voltar
+          <i className="bi bi-arrow-90deg-left" />
         </button>
       </header>
       <main>

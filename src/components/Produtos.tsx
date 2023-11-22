@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, GlobalState, ProductDetailsType } from '../types';
 import { addItem } from '../redux/actions/CarrinhoActions';
+import { ArticleProduct } from '../Styles';
 
 function Produtos({ product }: { product: ProductDetailsType }) {
   const dispatch:Dispatch = useDispatch();
@@ -12,16 +13,18 @@ function Produtos({ product }: { product: ProductDetailsType }) {
     dispatch(addItem(product));
   };
   return (
-    <article>
+    <ArticleProduct>
       <Link to="/">
         <h2>{title}</h2>
-        <h4>{`R$ ${price.toFixed(2)}`}</h4>
-        <img src={ thumbnail } alt={ title } />
+        <div>
+          <img src={ thumbnail } alt={ title } />
+        </div>
       </Link>
+      <h4>{`R$ ${price.toFixed(2)}`}</h4>
       <button onClick={ handleOnClick }>
         {incInCar ? 'Remover do carrinho' : 'Adicionar ao Carrinho'}
       </button>
-    </article>
+    </ArticleProduct>
   );
 }
 
