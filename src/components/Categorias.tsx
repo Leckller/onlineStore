@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, GlobalState } from '../types';
 import { fetchCategoriesResults } from '../redux/actions/FetchActions';
 
-function Categorias({ check }: { check: boolean }) {
+function Categorias({ check, setCheck, set }: { check: boolean,
+  setCheck: (p: boolean) => void, set: (p: boolean) => void }) {
   const dispatch:Dispatch = useDispatch();
   const { categorias, loadingCat } = useSelector(
     (state: GlobalState) => state.StoreFetchReducer,
@@ -11,7 +12,12 @@ function Categorias({ check }: { check: boolean }) {
 
   if (loadingCat) return <h1>Loading</h1>;
   return (
-    <section>
+    <section
+      onFocus={ () => {
+        setCheck(false);
+        set(false);
+      } }
+    >
       {categorias && categorias.map(({ id, name }) => (
         <label
           key={ id }
@@ -24,7 +30,7 @@ function Categorias({ check }: { check: boolean }) {
             type="radio"
             id={ `categoria:${name}` }
             name="categoria"
-            onClick={ () => dispatch(fetchCategoriesResults(id)) }
+            onClick={ () => { dispatch(fetchCategoriesResults(id)); set(false); } }
           />
         </label>
       ))}

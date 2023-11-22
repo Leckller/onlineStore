@@ -37,7 +37,12 @@ export type GlobalState = {
     search: ProductDetailsType[],
     categoriasSearch: CategoriesType[],
     loadingCatSearch: boolean,
+    selecCategorie: ProductDetailsType[],
+    loadingSelecCat: boolean,
   },
+  CarrinhoReducer: {
+    carrinho: [],
+  }
 };
 
 export type Dispatch = ThunkDispatch<GlobalState, null, AnyAction>;

@@ -1,12 +1,17 @@
-import { Link } from 'react-router-dom';
-import { CategoriesType } from '../types';
+import { useDispatch } from 'react-redux';
+import { CategoriesType, Dispatch } from '../types';
+import { fetchSelecCategorie } from '../redux/actions/FetchActions';
 
-function CategoriesSearch({ categorie: { id, name } }: { categorie: CategoriesType }) {
+function CategoriesSearch({ categorie: { id, name },
+  set }: { categorie: CategoriesType, set: (p: boolean) => void }) {
+  const dispatch:Dispatch = useDispatch();
+  const handleOnClick = () => {
+    set(true);
+    dispatch(fetchSelecCategorie(id));
+  };
   return (
     <article>
-      <Link to={ `/categories/${id}` }>
-        <h2>{name}</h2>
-      </Link>
+      <button onClick={ handleOnClick }><h2>{name}</h2></button>
     </article>
   );
 }

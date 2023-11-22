@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import Home from './pages/Home';
+import Carrinho from './pages/Carrinho';
 
 function App() {
   const GlobalStyle = createGlobalStyle`
@@ -15,6 +16,7 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={ <Home /> } />
+        <Route path="/carrinho" element={ <Carrinho /> } />
       </Routes>
     </>
   );

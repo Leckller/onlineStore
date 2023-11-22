@@ -1,12 +1,15 @@
 import { AnyAction } from 'redux';
 import { ERROR_FETCH, INI_FETCH,
   SUCESS_FETCH_CAT, SUCESS_FETCH_CATEGORIES_RESULTS,
-  SUCESS_FETCH_SEARCH } from '../actions/FetchActions';
+  SUCESS_FETCH_SEARCH,
+  SUCESS_FETCH_SELEC_CATEGORIES } from '../actions/FetchActions';
 
 const STATE = {
   loadingCat: false,
   loadingCatSearch: false,
   loadingSearch: false,
+  loadingSelecCat: false,
+  selecCategorie: [],
   categorias: [],
   categoriasSearch: [],
   search: [],
@@ -20,6 +23,8 @@ const StoreFetchReducer = (state = STATE, action: AnyAction) => {
         return {
           ...state, loadingCatSearch: true };
       }
+      if (action.payload === 'selecCat') return { ...state, loadingSelecCat: true };
+
       return { ...state, loadingSearch: true };
     }
     case SUCESS_FETCH_CAT: {
@@ -39,6 +44,10 @@ const StoreFetchReducer = (state = STATE, action: AnyAction) => {
       return {
         ...state, loadingCatSearch: false, categoriasSearch: data,
       };
+    }
+    case SUCESS_FETCH_SELEC_CATEGORIES: {
+      const data = action.payload;
+      return { ...state, loadingSelecCat: false, selecCategorie: data };
     }
     default: {
       return { ...state };
