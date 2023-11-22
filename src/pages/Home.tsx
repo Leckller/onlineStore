@@ -64,18 +64,22 @@ function Home() {
             <Produtos product={ e } key={ e.id } />
           )) : (
             <h1>Loading1</h1>
-          ) : loadingCatSearch ? <h1>Loading2</h1> : (
-            categorieCheck ? loadingSelecCat ? <h1>Loading3</h1> : (
-              selecCategorie.map((p) => (
-                <Produtos product={ p } key={ p.id } />
+          ) : loadingCatSearch ? (
+            <h1>Loading2</h1>
+          ) : (
+            categorieCheck ? (
+              loadingSelecCat ? <h1>Loading3</h1> : (
+                selecCategorie.map((p) => (
+                  <Produtos product={ p } key={ p.id } />
+                ))
               ))
-            ) : categoriasSearch.map((cat) => (
-              <CategoriesSearch
-                set={ setCategorieCheck }
-                categorie={ cat }
-                key={ cat.id }
-              />
-            ))
+              : categoriasSearch.map((cat) => (
+                <CategoriesSearch
+                  set={ setCategorieCheck }
+                  categorie={ cat }
+                  key={ cat.id }
+                />
+              ))
           )}
         </section>
       </main>

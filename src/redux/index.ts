@@ -5,8 +5,8 @@ import StoreFetchReducer from './reducers/StoreFetchReducer';
 import CarrinhoReducer from './reducers/CarrinhoReducer';
 
 export const reducer = combineReducers({
-  StoreFetchReducer,
   CarrinhoReducer,
+  StoreFetchReducer,
 });
 
 const store = legacy_createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
