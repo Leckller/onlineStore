@@ -15,6 +15,7 @@ function Home() {
   const [check, setCheck] = useState(false);
   const [searchString, setSearchString] = useState<string>('');
   const [categorieCheck, setCategorieCheck] = useState(false);
+  const [formOk, setFormOk] = useState(false);
   const { search, loadingSearch, categorias,
     categoriasSearch, loadingCatSearch, selecCategorie,
     loadingSelecCat } = useSelector(
@@ -25,8 +26,11 @@ function Home() {
     if (categorias.length < 1) {
       dispatch(fetchCategories());
     }
-    dispatch(fetchSearch(searchString));
-  }, [searchString]);
+    if (formOk) {
+      dispatch(fetchSearch(searchString));
+      setFormOk(false);
+    }
+  }, [searchString, formOk]);
   return (
     <HomeDiv>
       <header>
@@ -34,6 +38,7 @@ function Home() {
         <form
           onSubmit={ (e) => {
             e.preventDefault();
+            setFormOk(true);
           } }
         >
           <input
