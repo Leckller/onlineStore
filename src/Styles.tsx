@@ -18,7 +18,7 @@ export const HomeDiv = styled.div`
     height: 100%;
     display: flex;
     flex-direction: row;
-    section{
+    section:nth-child(1){
       width: 30%;
       display: flex;
       gap: 25px;
@@ -33,6 +33,11 @@ export const HomeDiv = styled.div`
           width: 80%;
         }
       }
+    }
+    section:nth-child(2){
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 300px)
     }
   }
 `;

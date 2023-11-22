@@ -1,38 +1,53 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Dispatch } from '../types';
+import { useDispatch, useSelector } from 'react-redux';
+import { Dispatch, GlobalState } from '../types';
 import { fetchCategories, fetchSearch } from '../redux/actions/FetchActions';
 import Categorias from '../components/Categorias';
 import { HomeDiv } from '../Styles';
+import Produtos from '../components/Produtos';
 
 function Home() {
   const dispatch:Dispatch = useDispatch();
   const [check, setCheck] = useState(false);
-  const [search, setSearch] = useState<string>('');
+  const [searchString, setSearchString] = useState<string>('');
+  const { search, loadingSearch, categorias } = useSelector(
+    (state:GlobalState) => state.StoreFetchReducer,
+  );
+  console.log(search);
   useEffect(() => {
-    dispatch(fetchCategories());
-  }, []);
+    if (categorias.length < 1) {
+      dispatch(fetchCategories());
+    }
+    dispatch(fetchSearch(searchString));
+  }, [searchString]);
   return (
     <HomeDiv onFocus={ () => setCheck(false) }>
       <header>
         <form
           onSubmit={ (e) => {
-            e.preventDefault(); dispatch(fetchSearch(search));
+            e.preventDefault();
           } }
         >
           <input
             type="text"
-            value={ search }
+            value={ searchString }
             placeholder="Pesquisar"
-            onChange={ ({ target: { value } }) => setSearch(value) }
+            onChange={ ({ target: { value } }) => setSearchString(value) }
             onClick={ () => setCheck(true) }
           />
         </form>
       </header>
       <main>
         <Categorias check={ check } />
-        {check ? 'search' : 'categorias'}
+        <section>
+          {search && !loadingSearch ? search.map((e) => (
+            <Produtos product={ e } key={ e.id } />
+          )) : (
+            <h1>Loading</h1>
+          )}
+        </section>
       </main>
     </HomeDiv>
   );

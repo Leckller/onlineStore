@@ -12,11 +12,12 @@ const STATE = {
 const StoreFetchReducer = (state = STATE, action: AnyAction) => {
   switch (action.type) {
     case INI_FETCH: {
-      return { ...state, loading: true };
+      if (action.payload === 'categories') return { ...state, loadingCat: true };
+      return { ...state, loadingSearch: true };
     }
     case SUCESS_FETCH_CAT: {
       const data = action.payload;
-      return { ...state, loading: false, categorias: data };
+      return { ...state, loadingCat: false, categorias: data };
     }
     case ERROR_FETCH: {
       console.log(action.payload.message);
@@ -24,7 +25,7 @@ const StoreFetchReducer = (state = STATE, action: AnyAction) => {
     }
     case SUCESS_FETCH_SEARCH: {
       const data = action.payload;
-      return { ...state, search: data, loading: false };
+      return { ...state, search: data, loadingSearch: false };
     }
     default: {
       return { ...state };

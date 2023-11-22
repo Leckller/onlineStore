@@ -14,7 +14,6 @@ export const categorias = async ():Promise<CategoriesType[]> => {
 
 export const searchItens = async (destino: string):Promise<ProductDetailsType[]> => {
   const response = await fetch(UrlBase + destinos.searchItens + destino);
-  console.log(UrlBase + destinos.searchItens + destino);
   const data = await response.json();
-  return data;
+  return data.results;
 };

@@ -7,6 +7,7 @@ function Categorias({ check }: { check: boolean }) {
   const { categorias, loadingCat } = useSelector(
     (state: GlobalState) => state.StoreFetchReducer,
   );
+
   if (loadingCat) return <h1>Loading</h1>;
   return (
     <section>

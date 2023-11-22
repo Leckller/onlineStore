@@ -16,13 +16,14 @@ export const sucessFetchCat = (data:CategoriesType[]) => ({
 });
 
 export const INI_FETCH = 'INI_FETCH';
-export const iniFetch = () => ({
+export const iniFetch = (load: string) => ({
   type: INI_FETCH,
+  payload: load,
 });
 
 export const fetchCategories = () => {
   return async (disp:Dispatch) => {
-    disp(iniFetch());
+    disp(iniFetch('categories'));
     try {
       const data = await categorias();
       disp(sucessFetchCat(data));
@@ -40,7 +41,7 @@ export const sucessFetchSearch = (data: ProductDetailsType[]) => ({
 
 export const fetchSearch = (endereco: string) => {
   return async (disp:Dispatch) => {
-    disp(iniFetch());
+    disp(iniFetch('search'));
     try {
       const data = await searchItens(endereco);
       disp(sucessFetchSearch(data));
