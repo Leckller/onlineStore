@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, GlobalState } from '../types';
+import { fetchCategoriesResults } from '../redux/actions/FetchActions';
 
 function Categorias({ check }: { check: boolean }) {
   const dispatch:Dispatch = useDispatch();
@@ -15,6 +16,7 @@ function Categorias({ check }: { check: boolean }) {
         <label
           key={ id }
           htmlFor={ `categoria:${name}` }
+          id={ id }
         >
           <h2>{name}</h2>
           <input
@@ -22,6 +24,7 @@ function Categorias({ check }: { check: boolean }) {
             type="radio"
             id={ `categoria:${name}` }
             name="categoria"
+            onClick={ () => dispatch(fetchCategoriesResults(id)) }
           />
         </label>
       ))}

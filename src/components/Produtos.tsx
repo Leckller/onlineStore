@@ -4,7 +4,6 @@ import { ProductDetailsType } from '../types';
 function Produtos({ product: {
   thumbnail, title, price,
 } }: { product: ProductDetailsType }) {
-  console.log(title);
   return (
     <article>
       <Link to="/">

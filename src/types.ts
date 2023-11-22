@@ -35,6 +35,8 @@ export type GlobalState = {
     loadingSearch: boolean,
     categorias: CategoriesType[],
     search: ProductDetailsType[],
+    categoriasSearch: CategoriesType[],
+    loadingCatSearch: boolean,
   },
 };
 
